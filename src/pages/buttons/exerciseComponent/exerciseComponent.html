@@ -1,0 +1,66 @@
+<ion-header>
+    <ion-navbar>
+      <ion-title id="header">{{header}}</ion-title>
+    </ion-navbar>
+  </ion-header>
+  <ion-content text-center>
+    <div>
+      <ion-row>
+        <ion-col width-25>
+            <button ion-button full outline (click)='btnAbs();'>Abs</button>
+        </ion-col>
+        <ion-col width-25>
+            <button ion-button full outline (click)='btnBack();'>Back</button>
+        </ion-col>
+        <ion-col width-25>
+            <button ion-button full outline (click)='btnBiceps();'>Biceps</button>
+        </ion-col>
+        <ion-col width-25>
+            <button ion-button full outline (click)='btnCalves();'>Calves</button>
+        </ion-col>
+      </ion-row>
+    </div>
+    <div>
+        <ion-row>
+          <ion-col width-25>
+              <button ion-button full outline (click)='btnChest();'>Chest</button>
+          </ion-col>
+          <ion-col width-25>
+              <button ion-button full outline (click)='btnForearms();'>Forearms</button>
+          </ion-col>
+          <ion-col width-25>
+              <button ion-button full outline (click)='btnGlutes();'>Glutes</button>
+          </ion-col>
+          <ion-col width-25>
+              <button ion-button full outline (click)='btnLegs();'>Legs</button>
+          </ion-col>
+        </ion-row>
+      </div>
+      <div>
+          <ion-row>
+            <ion-col width-25>
+                <button ion-button full outline (click)='btnShoulders();'>Shoulders</button>
+            </ion-col>
+            <ion-col width-25>
+                <button ion-button full outline (click)='btnTriceps();'>Tricpes</button>
+            </ion-col>
+            <ion-col width-25>
+                <button ion-button full outline (click)='btnAMRAP();'>AMRAP</button>
+            </ion-col>
+            <ion-col width-25>
+                <button ion-button full outline (click)='btnHIIT();'>HIIT</button>
+            </ion-col>
+          </ion-row>
+        </div>
+  {{descriptionTitle}}<br>{{test}}<br>
+  {{descriptionInfo}}
+    <ion-list>
+          <button ion-item *ngFor="let i of myObs" (click)="openButton(i)">
+            {{i.title}}<br>
+            {{i.machine}}
+          </button>
+        </ion-list>
+    <button ion-button outline (click)='btnReturn();'>Return</button>
+    {{output}}
+  </ion-content>
+  

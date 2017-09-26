@@ -1,0 +1,33 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title id="heading">Fitness Guide</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content class="card-background-page">
+  <ion-list>
+    <ion-list-header>Pick a sub-catagory</ion-list-header>
+    <div>
+        <ion-card (click)='btnBuild();'>
+            <img src="img/bodybuilding.jpg"/>
+            <div class="card-title">Body Building</div>
+            <div class="card-subtitle">How to start weight training</div>
+          </ion-card>
+      <ion-card (click)='btnFitness();'>
+          <img src="img/fitness.jpg"/>
+          <div class="card-title">Fitness</div>
+          <div class="card-subtitle">How to improve your fitness</div>
+        </ion-card>
+        <ion-card (click)='btnCal();'>
+            <img src="img/callisthenics.jpg"/>
+            <div class="card-title">Callisthenics</div>
+            <div class="card-subtitle">How to learn callisthenics</div>
+          </ion-card>
+          <ion-card (click)='btnAlt();'>
+              <img src="img/surf.jpg"/>
+              <div class="card-title">Alternative exercise</div>
+              <div class="card-subtitle">Effective hobbies</div>
+            </ion-card>
+    </div>
+  </ion-list>
+</ion-content>

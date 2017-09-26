@@ -1,0 +1,17 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title id="header">{{header}}</ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content text-center>
+  {{description}}
+  <div>
+      <ion-list  no-lines>
+          <ion-item *ngFor="let item of items">
+              <h2>{{item.title}}</h2><br>
+              <p id="info">{{item.info}}</p>
+          </ion-item>
+        </ion-list>
+  </div>
+  <button ion-button outline (click)='btnReturn();'>Return</button>
+</ion-content>

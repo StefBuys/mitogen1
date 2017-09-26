@@ -1,0 +1,11 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title id="header">Tracer</ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content text-center>
+    <button ion-button outline id="log" (click)='btnLog();'>View Logged Events</button><br><br>
+    <button ion-button outline id="units" (click)='btnUnits();'>Toggle Units<br>{{unit}}</button><br><br>
+    <button ion-button outline id="start" (click)='btnStart();'>Start</button>
+    <button ion-button outline id="return" (click)='btnReturn();'>Return</button>
+  </ion-content>

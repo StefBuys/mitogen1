@@ -1,0 +1,73 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title id="header">Add {{Title}} {{quantityVar*count}}{{quantityUnit}}</ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content text-center>
+<div>
+  <ion-row>
+    <ion-col></ion-col>
+    <ion-col>
+      Calories:
+    </ion-col>
+    <ion-col>
+      {{calories*count}}
+    </ion-col>
+    <ion-col></ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col></ion-col>
+    <ion-col>
+      Carbohydrates:
+    </ion-col>
+    <ion-col>
+      {{carbs*count}}
+    </ion-col>
+    <ion-col></ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col></ion-col>
+    <ion-col>
+      Protein:
+    </ion-col>
+    <ion-col>
+      {{protein*count}}
+    </ion-col>
+    <ion-col></ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col></ion-col>
+    <ion-col>
+      Fat:
+    </ion-col>
+    <ion-col>
+      {{fat*count}}
+    </ion-col>
+    <ion-col></ion-col>
+  </ion-row>
+</div>
+<div>
+  <ion-row>
+      <ion-col>
+          <button ion-button outline (click)='btnLess();' ion-button>
+              <ion-icon name="arrow-back">
+                Back
+              </ion-icon>              
+            </button>
+          </ion-col>
+          <ion-col>
+            Number of servings <br> {{count}}
+          </ion-col>
+          <ion-col>
+              <button ion-button outline (click)='btnMore();' ion-button>
+                  More
+                  <ion-icon name="arrow-forward">
+                  </ion-icon>              
+                </button>
+        </ion-col>
+  </ion-row>
+</div>
+  
+  <button ion-button outline (click)='btnAdd();'>Add</button>  
+  <button ion-button outline (click)='btnReturn();'>Return</button>
+</ion-content>

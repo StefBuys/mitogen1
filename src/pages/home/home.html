@@ -1,0 +1,46 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title id="heading">Home</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <h2 id="sub-heading">Welcome to Mitogen!</h2>
+  <div id="first-div">
+      <button id="temp-button" (click)='btnTemp();' ion-button>
+        <ion-icon name="add-circle"><br><br>
+          <ion-badge id="temp-badge">Temp</ion-badge>
+        </ion-icon>              
+      </button>
+      <button id="exercise-button" (click)='btnExercise();' ion-button>
+          <ion-icon name="walk"><br><br>
+            <ion-badge id="exercise-badge">Exercises</ion-badge>
+          </ion-icon>              
+        </button>
+    </div>
+  <div id="second-div">
+    <button id="tracer-button" (click)='btnTracer();' ion-button>
+      <ion-icon name="compass"><br><br>
+        <ion-badge id="tracer-badge">Route Tracer</ion-badge>
+      </ion-icon>              
+    </button>
+    <button id="calorie-button" (click)='btnCalorie();' ion-button>
+        <ion-icon name="cafe"><br><br>
+          <ion-badge id="calorie-badge">Calorie Calculator</ion-badge>
+        </ion-icon>              
+      </button>
+  </div>
+
+  <div id="third-div">
+      <button id="update-button" (click)='btnUpdate();' ion-button>
+        <ion-icon name="stats"><br><br>
+          <ion-badge id="update-badge">Update Progress</ion-badge>
+        </ion-icon>              
+      </button>
+      <button id="display-button" (click)='btnDisplay();' ion-button>
+          <ion-icon name="trending-up"><br><br>
+            <ion-badge id="display-badge">Display Progress</ion-badge>
+          </ion-icon>              
+        </button>
+    </div>
+</ion-content>
