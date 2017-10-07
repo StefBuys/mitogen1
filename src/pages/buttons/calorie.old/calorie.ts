@@ -1,7 +1,5 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component } from '@angular/core';
 import { NavController, ViewController, ModalController } from 'ionic-angular';
-import {FirebaseProvider} from "../../../providers/firebase/firebase";
-import { Chart } from 'chart.js';
 
 //The button based pages
 import { AddPage } from '../add/add';
@@ -11,12 +9,9 @@ import { AddPage } from '../add/add';
   templateUrl: 'calorie.html'
 })
 export class CaloriePage {
-	@ViewChild('ringCal') canvasCal;
-  ringCal: any;
   public chrono:number = 0;
-  public viewDay:number = 14;
-  public date = new Date().toLocaleDateString();
-  public viewMonth:string = "September";
+  public day:number = 14;
+  public month:string = "September";
   public Title: string = "Today";
   public BreakfastPerc:number;
   public LunchPerc:number;
@@ -27,13 +22,7 @@ export class CaloriePage {
   public LunchCal:number;
   public SupperCal:number;
   public SnacksCal:number;
-  public labels:string[] = ["Breakfast","Lunch","Supper","Snacks"];
-  //Breakfast","Lunch","Supper","Snacks - Red", "Blue", "Purple", "Orange
-  public cals:number[] = [];
-  constructor(public navCtrl: NavController, 
-              public viewCtrl: ViewController, 
-              public modalCtrl: ModalController,
-              public firebase: FirebaseProvider) {
+  constructor(public navCtrl: NavController, public viewCtrl: ViewController, public modalCtrl: ModalController) {
     this.display();
   }
   display(): void{
@@ -47,11 +36,10 @@ export class CaloriePage {
     this.LunchPerc = Math.floor((this.LunchCal/this.TotalCal)*100);
     this.SupperPerc = Math.floor((this.SupperCal/this.TotalCal)*100);
     this.SnacksPerc = Math.floor((this.SnacksCal/this.TotalCal)*100);
-    this.cals = [this.BreakfastCal,this.LunchCal,this.SupperCal,this.SnacksCal];
   }
   btnBack(): void{
     this.chrono--;
-    this.viewDay--;
+    this.day--;
     if(this.chrono == 0){
       this.Title = "Today";
     } else if (this.chrono<0) {
@@ -62,7 +50,7 @@ export class CaloriePage {
   }
   btnForeward(): void{
     this.chrono++;
-    this.viewDay++;
+    this.day++;
     if(this.chrono == 0){
       this.Title = "Today";
     } else if (this.chrono<0) {
@@ -90,29 +78,5 @@ export class CaloriePage {
   btnReturn(): void{
     console.log("return");
     this.viewCtrl.dismiss();
-  }
-  ionViewDidLoad() {
-    this.ringCal = new Chart(this.canvasCal.nativeElement, {
-		  type: 'doughnut',
-		  data: {
-		    labels: this.labels,
-		    datasets: [{
-		      label: '# of Votes',
-		      data: this.cals,
-		      backgroundColor: [
-		        'rgba(255, 99, 132, 0.2)',
-		        'rgba(54, 162, 235, 0.2)',
-		        'rgba(153, 102, 255, 0.2)',
-		        'rgba(255, 159, 64, 0.2)'
-		      ],
-		      hoverBackgroundColor: [
-		        "#FF6384",
-		        "#36A2EB",
-		        "#551a8b",
-		        "#FFCE56"
-		      ]
-		    }]
-		  }
-		});
   }
 }

@@ -1,0 +1,21 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title id="header">Display Progress</ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content text-center>
+  <ion-card>
+    <ion-card-header>
+      Weight Chart
+    </ion-card-header>
+    <ion-card-content>
+      <canvas #lineCanvas></canvas>
+    </ion-card-content>
+  </ion-card>
+    <button ion-button outline (click)='btnReturn();'>Return</button>
+    Test: {{test}}<br>
+    Output: {{output}}<br>
+    Weight: {{weight}}<br>
+    Date: {{date}}<br>
+    Height: {{height}}
+</ion-content>

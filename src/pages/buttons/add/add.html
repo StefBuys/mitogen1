@@ -5,25 +5,24 @@
 </ion-header>
 <ion-content text-center>
     <ion-searchbar (ionInput)="getItems($event)"></ion-searchbar>
-    <ion-list>
+    <!-- <ion-list>
       <ion-item *ngFor="let item of items">
         {{ item }}
       </ion-item>
-    </ion-list>
+    </ion-list> -->
     <ion-list>
-        <button ion-item *ngFor="let i of (foods | async)" (click)="openButton(i)">
-          {{i.$key}}
-          <!--{{i.message}}-->
-        </button>
-      </ion-list>
-      <!-- <ion-card *ngFor="let i of foods | async" (click)="openButton(i)">
-        <ion-item *ngIf="i !== undefined">
-          Date: {{r.date}}<br>
-          Weight: {{r.weight}}<br>
-          Height: {{r.height}}<br>
-          BMI: {{r.bmi}}
-        </ion-item>
-        <ion-card-title *ngIf="i !== undefined"> 
-        </ion-card-title>
-      </ion-card> -->
+      <button ion-item *ngFor="let item of items" (click)="openButton(item)">
+        {{ item }}
+      </button>
+    </ion-list>
+    <!-- <ion-card *ngFor="let i of foods | async" (click)="openButton(i)">
+      <ion-item *ngIf="i !== undefined">
+        Date: {{r.date}}<br>
+        Weight: {{r.weight}}<br>
+        Height: {{r.height}}<br>
+        BMI: {{r.bmi}}
+      </ion-item>
+      <ion-card-title *ngIf="i !== undefined"> 
+      </ion-card-title>
+    </ion-card> -->
 </ion-content>

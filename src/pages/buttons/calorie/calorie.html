@@ -12,7 +12,7 @@
                 </button>
             </ion-col>
             <ion-col width-60>
-                <ion-label id="title"><br>{{Title}}<br><br>({{day}} {{month}})</ion-label>
+                <ion-label id="title">{{Title}}<br>({{viewDate}})</ion-label>
             </ion-col>
             <ion-col width-20>
                 <button id="btnArrow" (click)='btnForeward();' ion-button block>
@@ -21,20 +21,27 @@
             </ion-col>
         </ion-row>
     </div>
+    <ion-card>
+        <ion-card-header>
+            Calorie Chart
+        </ion-card-header>
+        <ion-card-content>
+            <canvas #ringCal></canvas>
+        </ion-card-content>
+        <ion-badge id="tracer-badge">Total {{TotalCal}} cal</ion-badge>
+    </ion-card>
     <div>
       <ion-row>
         <ion-col width-50>
-            <button id="btnAdd" (click)='btnAddBreakfast();' ion-button block>
+            <button id="btn" (click)='btnAddBreakfast();' ion-button block>
                 <ion-badge id="tracer-badge">Breakfast</ion-badge><br>
-                <ion-icon name="add-circle"></ion-icon>
-                <ion-badge id="tracer-badge">Add</ion-badge>
+                <ion-badge id="tracer-badge">{{BreakfastPerc}}% ({{BreakfastCal}}cal)</ion-badge>
             </button>
         </ion-col>
         <ion-col width-50>
-            <button  id="btnAdd" (click)='btnAddLunch();' ion-button block>
+            <button  id="btn" (click)='btnAddLunch();' ion-button block>
                 <ion-badge id="tracer-badge">Lunch</ion-badge><br>
-                <ion-icon name="add-circle"></ion-icon>
-                <ion-badge id="tracer-badge">Add</ion-badge>
+                <ion-badge id="tracer-badge">{{LunchPerc}}% ({{LunchCal}} cal)</ion-badge>
             </button>
         </ion-col>
       </ion-row>
@@ -42,27 +49,18 @@
     <div>
         <ion-row>
           <ion-col width-50>
-              <button id="btnAdd" (click)='btnAddSupper();' ion-button block>
+              <button id="btn" (click)='btnAddSupper();' ion-button block>
                   <ion-badge id="tracer-badge">Supper</ion-badge><br>
-                  <ion-icon name="add-circle"></ion-icon>
-                  <ion-badge id="tracer-badge">Add</ion-badge>
+                  <ion-badge id="tracer-badge">{{SupperPerc}}% ({{SupperCal}} cal)</ion-badge>
               </button>
           </ion-col>
           <ion-col width-50>
-              <button  id="btnAdd" (click)='btnAddSnacks();' ion-button block>
+              <button  id="btn" (click)='btnAddSnacks();' ion-button block>
                   <ion-badge id="tracer-badge">Snacks</ion-badge><br>
-                  <ion-icon name="add-circle"></ion-icon>
-                  <ion-badge id="tracer-badge">Add</ion-badge>
+                  <ion-badge id="tracer-badge">{{SnacksPerc}}% ({{SnacksCal}} cal)</ion-badge>
               </button>
           </ion-col>
         </ion-row>
       </div>
-      <div>
-          <ion-label id="output">Breakfast {{BreakfastPerc}}%  ({{BreakfastCal}}cal)</ion-label>
-          <ion-label id="output">Lunch {{LunchPerc}}%  ({{LunchCal}} cal)</ion-label>
-          <ion-label id="output">Supper {{SupperPerc}}%  ({{SupperCal}} cal)</ion-label>
-          <ion-label id="output">Snacks {{SnacksPerc}}%  ({{SnacksCal}} cal)</ion-label>
-          <ion-label id="output">Total {{TotalCal}} cal</ion-label>
-      </div>
-    <button ion-button outline id="return" (click)='btnReturn();'>Return</button>
+    <!-- <button ion-button outline id="return" (click)='btnReturn();'>Return</button> -->
 </ion-content>

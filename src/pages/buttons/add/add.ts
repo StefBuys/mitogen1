@@ -9,20 +9,17 @@ import { AngularFireDatabase } from 'angularfire2/database';
   templateUrl: 'add.html'
 })
 export class AddPage {
-  //Test Variables
-  public test:string = "why";
-  public food:string[]; // = ["cheese","apple","sock","ham","chicken","cabbage","milk","rusk"];
-  //public message:string[] = ["Dairy","Fruit","Underwear","Swine","Foul","Gross","Dairy",];
 
   //Object Instantiation
-  public myObs = [{title: ""}];
+  items : Array<string>;
+  myObs : Array<string>;
   public myPage;
   public Title:string;
-  //public myObs = [""];
   foods: any
-  //public title:string = "defualt";
+  
   constructor(public navCtrl: NavController, public navParams: NavParams, public viewCtrl: ViewController, public firebase: FirebaseProvider, public af: AngularFireDatabase) {
     this.myPage = this.navParams.get("myPage");
+    this.items = [];
     this.myObs = [];
     if (this.myPage == 0) {
       this.Title = "Breakfast";
@@ -36,10 +33,21 @@ export class AddPage {
     if (this.myPage == 3) {
       this.Title = "Snack";
     }
-    this.foods = this.firebase.getFoodsList()
+    this.foods = this.firebase.getFoodsList();
+
+    this.foods.subscribe(thing => {
+      this.foods.forEach(thing => {
+          for(let f of thing) {
+            this.myObs.push(f.$key.toString());
+          }
+      });
+    });
+
+    // console.log(this.items);
+    //console.log(this.foods);
     //  for (let i in this.foods) {
     //  // var input = {title: this.food[i], message: this.message[i]};
-    //     var input = {title: this.foods[i]};
+    //     var input = {title: };
     //     console.log(input.title);
     //     this.myObs.push(input);
     //  }
@@ -47,31 +55,35 @@ export class AddPage {
     
   }
 
+  ngOnInit() {
+    this.setItems();
+  }
+
+  setItems() {
+    this.items = this.myObs;
+  }
+
   btnAdd(): void{
     console.log("add");
   }
 
   openButton(i){
-   // var input;
-    //input = i.$key.toString();
-    // for (let i in this.Title) {
-    var input = {title: i.$key.toString()};
-    this.myObs.push(input);
-    // }
-    //console.log(this.myObs[i]);
-    this.navCtrl.push(addComponentPage, {name: input.title});
+    var input = i;
+    this.navCtrl.push(addComponentPage, {name: input});
   }
 
   populateArray(){
 
   }
 
-  getItems(mySearch: any): void {
+  getItems(mySearch: any) {
+    this.setItems();
     var input = mySearch.target.value;
-    if (input && input.trim() != '') {
-      this.myObs = this.myObs.filter((item) => {
-        return (item.title.toLowerCase().indexOf(input.toLowerCase()) > -1);
-      })
+    console.log(input);
+    if (input && input.trim() !== '') {
+      this.items = this.items.filter(function(item) {
+        return item.toLowerCase().includes(input.toLowerCase());
+      });
     }
   }
 
