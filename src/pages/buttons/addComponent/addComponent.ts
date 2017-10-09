@@ -10,10 +10,10 @@ export class addComponentPage {
   myItem:any;
   quantityVar:number = 100;
   quantityUnit:string = "g";
-  calories:number = 1000;
-  carbs:number = 150;
-  protein:number = 100;
-  fat:number = 400;
+  calories:number;
+  carbs:number;
+  protein:number;
+  fat:number;
   count:number = 1;
   //public title:string = "defualt";
   constructor(public navCtrl: NavController, public navParams: NavParams, public viewCtrl: ViewController) {
