@@ -13,29 +13,56 @@ import { AddPage } from '../add/add';
 export class CaloriePage {
 	@ViewChild('ringCal') canvasCal;
   ringCal: any;
-  public chrono:number = 0;
-  public viewDay:number = 14;
-  public date = new Date().toLocaleDateString();
-  public viewMonth:string = "September";
-  public Title: string = "Today";
-  public BreakfastPerc:number;
-  public LunchPerc:number;
-  public SupperPerc:number;
-  public SnacksPerc:number;
-  public TotalCal:number;
-  public BreakfastCal:number;
-  public LunchCal:number;
-  public SupperCal:number;
-  public SnacksCal:number;
-  public labels:string[] = ["Breakfast","Lunch","Supper","Snacks"];
+  
+  private months  = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+  private monthTest = {January: 31, February: 28, February2: 29, March: 31, April: 30, May: 31, June: 30, July: 31, August: 31, September: 30, October: 31, November: 30, December: 31};
+  private chrono:number = 0;
+  private date = new Date().toLocaleDateString('en-GB');
+  private monthNum = new Date().getMonth();
+  private viewMonth: string = this.months[this.monthNum];
+  private viewDate = new Date().getDate();
+  private year = new Date().getFullYear();
+
+  private Title: string = "Today";
+  private BreakfastPerc:number;
+  private LunchPerc:number;
+  private SupperPerc:number;
+  private SnacksPerc:number;
+  private TotalCal:number;
+  private BreakfastCal:number;
+  private LunchCal:number;
+  private SupperCal:number;
+  private SnacksCal:number;
+  private labels:string[] = ["Breakfast","Lunch","Supper","Snacks"];
   //Breakfast","Lunch","Supper","Snacks - Red", "Blue", "Purple", "Orange
-  public cals:number[] = [];
+  private cals:number[] = [];
   constructor(public navCtrl: NavController, 
               public viewCtrl: ViewController, 
               public modalCtrl: ModalController,
               public firebase: FirebaseProvider) {
     this.display();
+    console.log(this.viewMonth);
+    console.log(this.monthTest["February"]);
+    this.leapYear();
   }
+
+  leapYear() : boolean{
+    if(this.year % 4 === 0) {
+      if(this.year % 100 === 0) {
+        if(this.year % 400 === 0) {
+          console.log("true");
+          return true;
+        }
+        console.log("true");
+        return true;
+      }
+      console.log("true");
+      return true;
+    }
+    console.log("false");
+    return false;
+  }
+
   display(): void{
     //Remember to get the date
     this.BreakfastCal = 913;
@@ -49,20 +76,35 @@ export class CaloriePage {
     this.SnacksPerc = Math.floor((this.SnacksCal/this.TotalCal)*100);
     this.cals = [this.BreakfastCal,this.LunchCal,this.SupperCal,this.SnacksCal];
   }
+
   btnBack(): void{
     this.chrono--;
-    this.viewDay--;
+    this.viewDate--;
+
+    if(this.viewDate < 1) {
+      this.viewDate = this.monthTest[this.months[--this.monthNum]];
+      this.viewMonth = this.months[this.monthNum];
+    }
+
     if(this.chrono == 0){
       this.Title = "Today";
+
     } else if (this.chrono<0) {
       this.Title = "Past";
     } else if (this.chrono>0) {
       this.Title = "Future";
     }
   }
+
   btnForeward(): void{
     this.chrono++;
-    this.viewDay++;
+    this.viewDate++;
+
+    if(this.viewDate > this.monthTest[this.months[this.monthNum]]) {
+      this.viewDate = 1;
+      this.viewMonth = this.months[++this.monthNum];
+    }
+
     if(this.chrono == 0){
       this.Title = "Today";
     } else if (this.chrono<0) {
@@ -71,26 +113,32 @@ export class CaloriePage {
       this.Title = "Future";
     }
   }
+
   btnAddBreakfast(): void{
     console.log("add Breakfast");
     this.navCtrl.push(AddPage, {myPage: 0});
   }
+
   btnAddLunch(): void{
     console.log("add Lunch");
     this.navCtrl.push(AddPage, {myPage: 1});
   }
+
   btnAddSupper(): void{
     console.log("add Supper");
     this.navCtrl.push(AddPage, {myPage: 2});
   }
+
   btnAddSnacks(): void{
     console.log("add Snacks");
     this.navCtrl.push(AddPage, {myPage: 3});
   }
+
   btnReturn(): void{
     console.log("return");
     this.viewCtrl.dismiss();
   }
+
   ionViewDidLoad() {
     this.ringCal = new Chart(this.canvasCal.nativeElement, {
 		  type: 'doughnut',

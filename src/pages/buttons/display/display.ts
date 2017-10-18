@@ -1,7 +1,8 @@
 import { Component, ViewChild } from '@angular/core';
-import {IonicPage, NavController, ViewController, NavParams  } from 'ionic-angular';
-import {FirebaseProvider} from "../../../providers/firebase/firebase";
+import {NavController, ViewController, NavParams  } from 'ionic-angular';
+import {FirebaseProvider} from '../../../providers/firebase/firebase';
 import { Chart } from 'chart.js';
+
 @Component({
   selector: 'page-display',
   templateUrl: 'display.html'
@@ -31,25 +32,25 @@ export class DisplayPage {
   lineBMI: any;
   lineHeight: any;
 
-  constructor(public navCtrl: NavController,
-              public viewCtrl: ViewController,
-              public NavParams: NavParams,
-              public firebase: FirebaseProvider) {
-                this.weight = [];
-                this.date = [];
-                this.height = [];
-                this.bmi = [];
+  constructor(public navCtrl: NavController, public viewCtrl: ViewController, public NavParams: NavParams, public firebase: FirebaseProvider) {
+    this.weight = [];
+    this.date = [];
+    this.height = [];
+    this.bmi = [];
     // get exercise list from firebase
-    this.records = this.firebase.getRecordsList();
+    this.weight = this.firebase.getWeight();
+    this.height = this.firebase.getHeight();
+    this.bmi = this.firebase.getBmi();
+    this.date = this.firebase.getDate();
 
-    this.records.map((res) => {
-        res.forEach(record => {
-          this.weight.push(Number(record.weight))
-          this.date.push(record.date)
-          this.bmi.push(Number(record.bmi))
-          this.height.push(Number(record.height))
-        })
-      }).subscribe()
+    // this.records.subscribe((res) => {
+    //     res.forEach(record => {
+    //       this.weight.push(Number(record.weight));
+    //       this.date.push(record.date);
+    //       this.bmi.push(Number(record.bmi));
+    //       this.height.push(Number(record.height));
+    //     });
+    // });
 
       // this.records
       // .map((res) => {
@@ -62,7 +63,11 @@ export class DisplayPage {
       // }).subscribe()
   }
 
-	ionViewDidLoad() {
+	ngOnInit() {
+    this.drawGraphs();
+  }
+
+  drawGraphs() {
     this.lineWeight = new Chart(this.canvasWeight.nativeElement, {
       type: 'line',
         data: {

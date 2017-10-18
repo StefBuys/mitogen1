@@ -11,10 +11,10 @@ export class UpdatePage {
   public weight: string = '';
   public height: string = '';
   public bmi: string = '';
-  public date = new Date().toLocaleDateString();
+  public date = new Date().toLocaleDateString('en-GB');
   //Created Variables
   records: any
-  constructor(public navCtrl: NavController, 
+  constructor(public navCtrl: NavController,
               public viewCtrl: ViewController,
               public firebase: FirebaseProvider) {
     // get exercise list from firebase

@@ -16,15 +16,19 @@ import { ExercisePage } from '../buttons/exercise/exercise';
 })
 export class HomePage {
 
+
   constructor(private afAuth: AngularFireAuth, private toast: ToastController,public navCtrl: NavController, public modalCtrl: ModalController, public firebase: FirebaseProvider) {
-    
+  }
+
+  getRecords() {
+    // return this.records;
   }
 
   ionViewWillLoad() {
     this.afAuth.authState.subscribe(data => {
       if (data && data.email && data.uid) {
         this.toast.create({
-          message: `Welcome to APP_NAME, ${data.email}`,
+          message: `Welcome to Mitogen, ${data.email}`,
           duration: 3000
         }).present();
       }

@@ -41,18 +41,7 @@ export class AddPage {
             this.myObs.push(f.$key.toString());
           }
       });
-    });
-
-    // console.log(this.items);
-    //console.log(this.foods);
-    //  for (let i in this.foods) {
-    //  // var input = {title: this.food[i], message: this.message[i]};
-    //     var input = {title: };
-    //     console.log(input.title);
-    //     this.myObs.push(input);
-    //  }
-    //console.log(this.foods.$ref.child.key);
-    
+    });    
   }
 
   ngOnInit() {
@@ -70,10 +59,6 @@ export class AddPage {
   openButton(i){
     var input = i;
     this.navCtrl.push(addComponentPage, {name: input});
-  }
-
-  populateArray(){
-
   }
 
   getItems(mySearch: any) {

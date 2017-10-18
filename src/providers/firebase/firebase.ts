@@ -14,20 +14,58 @@ import { AngularFireAuth } from 'angularfire2/auth';
 @Injectable()
 export class FirebaseProvider {
 
-  uid;
+
+
+  records : any;
+  weight: Array<number>;
+  height: Array<number>;
+  bmi: Array<number>;
+  date: Array<string>;
+
+  foodLog: any;
+
+  uid: any;
+
 
   constructor(public afd: AngularFireDatabase, private afa: AngularFireAuth) {
-    console.log('Hello FirebaseProvider Provider');
+    console.log('FirebaseProvider');
     this.uid = afa.auth.currentUser.uid;      
-    //console.log(this.uid);
+    this.weight = [];
+    this.bmi = [];
+    this.height = [];
+    this.date = [];
 
-    //izoNTsW3p0cVh0vZvOocbRBL1Vx2
-    //izoNTsW3p0cVh0vZvOocbRBL1Vx2
+    this.records = this.getRecordsList();
 
-    //nuHYLxxEsLfspHfaZywIJqClCSX2
-    //nuHYLxxEsLfspHfaZywIJqClCSX2
+    this.records.subscribe((res) => {
+      res.forEach(record => {
+        console.log(record);
+        this.weight.push(Number(record.weight));
+        this.date.push(record.date);
+        this.bmi.push(Number(record.bmi));
+        this.height.push(Number(record.height));
+      });
+  });
 
   }
+
+  getWeight() {
+    return this.weight;
+  }
+  getHeight() {
+    return this.height;
+  }
+  getDate() {
+    return this.date;
+  }
+  getBmi() {
+    return this.bmi;
+  }
+
+  getFood(food: any){
+    return this.afd.list('/Food/' + food + '/');
+  }
+
   getExerciseList() {
     return this.afd.list('/Exercise/');
   }
