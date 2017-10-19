@@ -7,6 +7,11 @@ import { FirebaseProvider } from "../../../providers/firebase/firebase";
   templateUrl: 'addComponent.html'
 })
 export class addComponentPage {
+  prot: any;
+  carb: any;
+  fatt: any;
+  cal: any;
+  
   foodList: any;
   food: any;
   Title:string;
@@ -45,6 +50,10 @@ export class addComponentPage {
         }
       })
     });
+    this.prot = this.protein;
+    this.fatt = this.fat;
+    this.cal = this.calories;
+    this.carb = this.carbs;
   }
 
   btnAdd(): void {
@@ -54,11 +63,19 @@ export class addComponentPage {
   btnLess(): void {
     if (this.count>1) {
       this.count--;
+      this.prot = (Number((this.protein * this.count).toFixed(1)));
+      this.fatt = (Number((this.fat * this.count).toFixed(1)));
+      this.carb = (Number((this.carbs * this.count).toFixed(1)));
+      this.cal = (Number((this.calories * this.count).toFixed(1)));
     }
   }
 
   btnMore(): void {
     this.count++;
+    this.prot = (Number((this.protein * this.count).toFixed(1)));
+    this.fatt = (Number((this.fat * this.count).toFixed(1)));
+    this.carb = (Number((this.carbs * this.count).toFixed(1)));
+    this.cal = (Number((this.calories * this.count).toFixed(1)));
   }
 
   btnReturn(): void{

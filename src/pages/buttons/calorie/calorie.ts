@@ -15,7 +15,7 @@ export class CaloriePage {
   ringCal: any;
   
   private months  = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-  private monthTest = {January: 31, February: 28, February2: 29, March: 31, April: 30, May: 31, June: 30, July: 31, August: 31, September: 30, October: 31, November: 30, December: 31};
+  private monthTest = {January: 31, February: 28, March: 31, April: 30, May: 31, June: 30, July: 31, August: 31, September: 30, October: 31, November: 30, December: 31};
   private chrono:number = 0;
   private date = new Date().toLocaleDateString('en-GB');
   private monthNum = new Date().getMonth();
@@ -41,26 +41,26 @@ export class CaloriePage {
               public modalCtrl: ModalController,
               public firebase: FirebaseProvider) {
     this.display();
-    console.log(this.viewMonth);
     console.log(this.monthTest["February"]);
     this.leapYear();
   }
 
-  leapYear() : boolean{
+  leapYear() {
     if(this.year % 4 === 0) {
       if(this.year % 100 === 0) {
         if(this.year % 400 === 0) {
           console.log("true");
-          return true;
+          this.monthTest["February"] = 29;
         }
         console.log("true");
-        return true;
+        this.monthTest["February"] = 29;
       }
       console.log("true");
-      return true;
+      this.monthTest["February"] = 29;
+    } else {
+      console.log("false");
+      this.monthTest["February"] = 28;
     }
-    console.log("false");
-    return false;
   }
 
   display(): void{
@@ -82,7 +82,13 @@ export class CaloriePage {
     this.viewDate--;
 
     if(this.viewDate < 1) {
-      this.viewDate = this.monthTest[this.months[--this.monthNum]];
+      if(this.monthNum < 1) {
+        this.year--;
+        console.log(this.year);
+        this.leapYear();
+        this.monthNum = 12;
+      }
+      this.viewDate = this.monthTest[this.months[--this.monthNum]];      
       this.viewMonth = this.months[this.monthNum];
     }
 
@@ -102,6 +108,12 @@ export class CaloriePage {
 
     if(this.viewDate > this.monthTest[this.months[this.monthNum]]) {
       this.viewDate = 1;
+      if(this.monthNum > this.months.length-2) {
+        this.year++;
+        console.log(this.year);
+        this.leapYear();
+        this.monthNum = -1;
+      }
       this.viewMonth = this.months[++this.monthNum];
     }
 
