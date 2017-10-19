@@ -32,6 +32,8 @@ import { ExercisePage } from '../pages/buttons/exercise/exercise';
 import { exerciseComponentPage } from '../pages/buttons/exerciseComponent/exerciseComponent';
 import { addComponentPage } from '../pages/buttons/addComponent/addComponent';
 import { FirebaseProvider } from '../providers/firebase/firebase';
+import { AccountsPage } from '../pages/buttons/account/account';
+//import { subaccountsPage } from '../pages/buttons/subaccounts/subaccounts';
 
 // Initialize Firebase
 export const firebaseConfig = {
@@ -42,19 +44,6 @@ export const firebaseConfig = {
   storageBucket: "mitogen-7d2a9.appspot.com",
   messagingSenderId: "1090828191593"
 };
-
-
-
-  // Initialize Firebase
-  // export const firebaseConfig = {
-  //   apiKey: "AIzaSyDEasIZgcaEKEHpqYXrAlcIA-nq1R4jDKk",
-  //   authDomain: "mycoolapp-3c6a5.firebaseapp.com",
-  //   databaseURL: "https://mycoolapp-3c6a5.firebaseio.com",
-  //   projectId: "mycoolapp-3c6a5",
-  //   storageBucket: "mycoolapp-3c6a5.appspot.com",
-  //   messagingSenderId: "27401176854"
-  // };
-
 
 @NgModule({
   declarations: [
@@ -73,7 +62,8 @@ export const firebaseConfig = {
     guideComponentPage,
     ExercisePage,
     exerciseComponentPage,
-    addComponentPage
+    addComponentPage,
+    AccountsPage
   ],
   imports: [
     BrowserModule,
@@ -100,7 +90,8 @@ export const firebaseConfig = {
     guideComponentPage,
     ExercisePage,
     exerciseComponentPage,
-    addComponentPage
+    addComponentPage,
+    AccountsPage
   ],
   providers: [
     StatusBar,

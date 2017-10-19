@@ -50,6 +50,7 @@ export class exerciseComponentPage {
     }
     var input:any = {date: this.date, activity: this.activity};
     this.practise.push(input);
+    this.btnReturn();
   }
   //Button Methods
   btnAbs(): void{

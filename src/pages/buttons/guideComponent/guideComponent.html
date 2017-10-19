@@ -6,12 +6,12 @@
 <ion-content text-center>
   {{description}}
   <div>
-      <ion-list  no-lines>
-          <ion-item *ngFor="let item of items">
-              <h2>{{item.title}}</h2><br>
-              <p id="info">{{item.info}}</p>
-          </ion-item>
-        </ion-list>
+    <ion-list  no-lines>
+      <ion-item *ngFor="let i of items">
+        <h2>{{i.title}}</h2>
+        <p id="info">{{i.info}}</p>
+      </ion-item>
+    </ion-list>
   </div>
   <button ion-button outline (click)='btnReturn();'>Return</button>
 </ion-content>

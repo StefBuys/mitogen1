@@ -1,7 +1,8 @@
 import { Component, ViewChild } from '@angular/core';
-import {IonicPage, NavController, ViewController, NavParams  } from 'ionic-angular';
-import {FirebaseProvider} from "../../../providers/firebase/firebase";
+import {NavController, ViewController, NavParams  } from 'ionic-angular';
+import {FirebaseProvider} from '../../../providers/firebase/firebase';
 import { Chart } from 'chart.js';
+
 @Component({
   selector: 'page-display',
   templateUrl: 'display.html'
@@ -9,20 +10,11 @@ import { Chart } from 'chart.js';
 export class DisplayPage {
   barChart:any;
   records:any;
-  // weight:number[] = [72, 76, 77,79, 80, 77, 75];
-  // date:string[] = ["9/5/2017", "9/7/2017", "9/9/2017", "9/11/2017", "9/13/2017", "9/14/2017", "9/16/2017"];
-  // height:number[] = [1.82,1.82,1.82,1.82,1.82,1.82,1.82,1.82];
-  // bmi:number[] = [22.34,22.94,23.24,23.85,24.15,23.25,22.64];
 
   weight : Array<number>;
   date : Array<string>;
   height : Array<number>;
   bmi : Array<number>;
-
-  // weight:number[] = []
-  // date:string[] = []
-  // height:number[] = []
-  // bmi:number[] = []
 
 	@ViewChild('lineWeight') canvasWeight;
 	@ViewChild('lineBMI') canvasBMI;
@@ -40,16 +32,19 @@ export class DisplayPage {
                 this.height = [];
                 this.bmi = [];
     // get exercise list from firebase
-    this.records = this.firebase.getRecordsList();
+    this.weight = this.firebase.getWeight();
+    this.height = this.firebase.getHeight();
+    this.bmi = this.firebase.getBmi();
+    this.date = this.firebase.getDate();
 
-    this.records.map((res) => {
-        res.forEach(record => {
-          this.weight.push(Number(record.weight))
-          this.date.push(record.date)
-          this.bmi.push(Number(record.bmi))
-          this.height.push(Number(record.height))
-        })
-      }).subscribe()
+    // this.records.subscribe((res) => {
+    //     res.forEach(record => {
+    //       this.weight.push(Number(record.weight));
+    //       this.date.push(record.date);
+    //       this.bmi.push(Number(record.bmi));
+    //       this.height.push(Number(record.height));
+    //     });
+    // });
 
       // this.records
       // .map((res) => {
@@ -62,7 +57,11 @@ export class DisplayPage {
       // }).subscribe()
   }
 
-	ionViewDidLoad() {
+	ngOnInit() {
+    this.drawGraphs();
+  }
+
+  drawGraphs() {
     this.lineWeight = new Chart(this.canvasWeight.nativeElement, {
       type: 'line',
         data: {

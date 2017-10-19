@@ -4,8 +4,17 @@
   </ion-navbar>
 </ion-header>
 <ion-content text-center>
-    <button ion-button outline id="log" (click)='btnLog();'>View Logged Events</button><br><br>
-    <button ion-button outline id="units" (click)='btnUnits();'>Toggle Units<br>{{unit}}</button><br><br>
-    <button ion-button outline id="start" (click)='btnStart();'>Start</button>
-    <button ion-button outline id="return" (click)='btnReturn();'>Return</button>
+    <button ion-button full color="secondary" clear (click)='btnStart();'>Start</button>
+
+    <!-- <ion-card *ngFor="let r of records | async" (click)="openButton(r)">
+        <ion-item *ngIf="r !== undefined">
+          Date: {{r.date}}<br>
+          Weight: {{r.weight}}<br>
+          Height: {{r.height}}<br>
+          BMI: {{r.bmi}}
+        </ion-item>
+        <ion-card-title *ngIf="r !== undefined"> 
+        </ion-card-title>
+      </ion-card> -->
+    <button ion-button full color="secondary" clear (click)='btnReturn();'>Return</button>
   </ion-content>

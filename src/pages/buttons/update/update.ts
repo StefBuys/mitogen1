@@ -7,9 +7,9 @@ import { FirebaseProvider } from "../../../providers/firebase/firebase";
   templateUrl: 'update.html'
 })
 export class UpdatePage {
-  public count: number = 0;
+  //public count: number = 0;
   public weight: string = '';
-  public height: string = '';
+  public height: string = '';s
   public bmi: string = '';
   public date = new Date().toLocaleDateString();
   //Created Variables
@@ -17,10 +17,9 @@ export class UpdatePage {
   constructor(public navCtrl: NavController, 
               public viewCtrl: ViewController,
               public firebase: FirebaseProvider) {
-    // get exercise list from firebase
+    // get updates list from firebase
     this.records = this.firebase.getRecordsList()
   }
-  
   openButton(r){
     var entry = r;//The whole object
     //add it to DB
@@ -32,12 +31,14 @@ export class UpdatePage {
     this.bmi = Math.round(Number(this.weight)/Math.pow(Number(this.height),2)*100)/100+"";
   }
   btnLog(): void{
-    var input:any = {bmi: this.bmi, date: this.date, height: this.height, weight: this.weight};
-    this.records.push(input);
-    this.count = this.records.length;
+    if (this.bmi != '' && this.date != '' && this.height != '' && this.weight != '') {
+      var input:any = {bmi: this.bmi, date: this.date, height: this.height, weight: this.weight};
+      this.records.push(input);
+    }
+    //this.count = this.records.length;
   }
   btnReturn(): void{
-    console.log("return");
+    //console.log("return");
     this.viewCtrl.dismiss();
   }
 }

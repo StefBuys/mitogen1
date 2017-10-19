@@ -9,6 +9,7 @@ import { DisplayPage } from '../buttons/display/display';
 import { UpdatePage } from '../buttons/update/update';
 import { TracerPage } from '../buttons/tracer/tracer';
 import { ExercisePage } from '../buttons/exercise/exercise';
+import { AccountsPage } from '../buttons/account/account';
 
 @Component({
   selector: 'page-home',
@@ -36,8 +37,9 @@ export class HomePage {
       }
     })
   }
-  public btnTemp(): void {
-    console.log("Temp One");
+  public btnAccounts(): void {
+    console.log("Accounts");
+    this.navCtrl.push(AccountsPage);
   }
   public btnExercise(): void {
     console.log("Exercise");
